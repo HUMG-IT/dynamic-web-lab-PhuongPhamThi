@@ -1,0 +1,50 @@
+name: Kiểm thử Node.js và Cypress
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Tải mã nguồn từ GitHub về môi trường làm việc
+        uses: actions/checkout@v3
+
+      - name: Cài đặt môi trường Node.js với phiên bản 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Cài đặt tất cả các thư viện được liệt kê trong package.json
+        run: npm install
+
+      - name: Thực hiện kiểm thử đơn vị bằng Jest
+        run: npm test
+
+      - name: Khởi động server để chuẩn bị kiểm thử UI bằng Cypress
+        run: |
+          npm run start &                     # Khởi động server ở chế độ nền
+          npx wait-on http://localhost:3000   # Chờ server sẵn sàng
+
+      - name: Chạy kiểm thử End-to-End (E2E) với Cypress
+        # Thực hiện kiểm thử E2E bằng Cypress cho UI viết bằng HTML, CSS, và JavaScript
+        uses: cypress-io/github-action@v2
+        with:
+          config-file: cypress.config.js  # Nếu có tệp cấu hình Cypress. Có thể bỏ dòng này nếu không có
+        env:
+          CI: true  # Đặt chế độ Cypress là CI
+
+      - name: Cài đặt Chrome và ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          npm install chromedriver selenium-webdriver  # Cài đặt ChromeDriver từ npm
+
+      - name: Chạy kiểm thử UI với Selenium
+        run: xvfb-run -a node test/selenium_test.js  # Sử dụng Xvfb để chạy trong môi trường không có giao diện
