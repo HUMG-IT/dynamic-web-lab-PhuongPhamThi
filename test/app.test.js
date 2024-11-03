@@ -12,7 +12,7 @@ app.post('/api/v1/submit', (req, res) => {
   res.json({ message: `Xin chào, ${name}!`, names });
 });
 
-describe('Kiểm thử POST /api/v1/submit', () => {
+describe('POST /api/v1/submit', () => {
   it('trả về lời chào và cập nhật mảng tên', async () => {
     const res = await request(app)
       .post('/api/v1/submit')
