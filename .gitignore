@@ -36,3 +36,5 @@ Thumbs.db
 .idea/
 *.sublime-project
 *.sublime-workspace
+# Ignore Firebase Admin SDK file
+src/dynamic-web-lab-firebase-adminsdk-*.json
