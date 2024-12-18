@@ -1,17 +1,8 @@
-/**
- * Module định nghĩa các route của ứng dụng
- * 
- * Module này định nghĩa các route liên quan đến:
- * - Lưu tên của người dùng.
- * - Tính và phân loại chỉ số BMI từ dữ liệu người dùng.
- */
-
 const express = require('express');
 const router = express.Router();
 const { submitName } = require('../controllers/nameController');
-// TODO: Import hàm `getBMI` từ `bmiController` để xử lý yêu cầu tính chỉ số BMI
 const { getBMI } = require('../controllers/bmiController');
-const{calculateAge}= require('../controllers/ageController');
+const { calculateAge } = require('../controllers/ageController');
 
 /**
  * Route cho endpoint `/submit`
@@ -35,8 +26,18 @@ router.post('/submit', submitName);
  * @access Public
  * @returns {Object} JSON - Trả về chỉ số BMI và phân loại.
  */
-// TODO: Định nghĩa route POST cho `/bmi`, sử dụng hàm `getBMI` từ `bmiController` để xử lý yêu cầu
 router.post('/bmi', getBMI);
+
+/**
+ * Route cho endpoint `/age`
+ * 
+ * Route này nhận yêu cầu POST từ client với năm sinh,
+ * gọi hàm `calculateAge` từ `ageController` để tính tuổi.
+ * 
+ * @route POST /api/v1/age
+ * @access Public
+ * @returns {Object} JSON - Trả về tuổi và thông báo.
+ */
 router.post('/age', calculateAge);
 
 module.exports = router;
