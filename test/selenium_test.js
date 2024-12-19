@@ -26,6 +26,20 @@ const { Builder, By } = require('selenium-webdriver');
         } else {
             console.error('Kiểm thử tính BMI: Failed - Phân loại BMI không đúng');
         }
+
+        // Kiểm thử tính tuổi
+        await driver.findElement(By.id('yearOfBirth')).sendKeys('2000'); // Nhập năm sinh
+        await driver.findElement(By.xpath("//button[contains(text(),'Tính tuổi')]")).click();
+
+        let ageResult = await driver.findElement(By.id('ageResult')).getText();
+        const currentYear = new Date().getFullYear();
+        const expectedAge = currentYear - 2000;
+
+        if (ageResult.includes(`Tuổi của bạn là ${expectedAge}`)) {
+            console.log('Kiểm thử tính tuổi: Passed');
+        } else {
+            console.error('Kiểm thử tính tuổi: Failed - Kết quả tính tuổi không đúng');
+        }
     } catch (error) {
         console.error('Kiểm thử thất bại:', error.message);
     } finally {

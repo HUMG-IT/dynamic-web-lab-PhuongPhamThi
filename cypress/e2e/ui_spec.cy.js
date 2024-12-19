@@ -13,4 +13,11 @@ describe('Kiểm thử giao diện lưu tên và tính chỉ số BMI', () => {
         cy.get('button').contains('Tính BMI').click();
         cy.get('#bmiResult').should('contain', 'Bình thường');
     });
+
+    it('tính và hiển thị tuổi', () => {
+        cy.visit('http://localhost:3000');
+        cy.get('#birthYear').type('2004');
+        cy.get('button').contains('Tính tuổi').click();
+        cy.get('#bmiResult').should('contain', 'Tuổi của bạn là: 20 tuổi.');
+    });    
 });
