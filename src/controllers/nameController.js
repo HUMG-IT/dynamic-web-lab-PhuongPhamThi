@@ -1,4 +1,4 @@
-const db = require('../firebase');
+const db = require('../../public/js/firebaseauth');
 
 /**
  * Hàm `submitName` xử lý yêu cầu POST chứa một tên mới từ client.

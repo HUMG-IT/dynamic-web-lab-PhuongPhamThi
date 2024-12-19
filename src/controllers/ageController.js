@@ -1,4 +1,4 @@
-const db = require('../firebase');
+const db = require('../../public/js/firebaseauth');
 
 /**
  * Hàm calculateAge xử lý yêu cầu tính tuổi từ năm sinh của client.

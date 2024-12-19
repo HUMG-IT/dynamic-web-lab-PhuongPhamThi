@@ -1,5 +1,5 @@
 const { calculateBMI, classifyBMI } = require('../models/bmi');
-const db = require('../firebase');
+const db = require('../../public/js/firebaseauth');
 
 /**
  * Hàm getBMI xử lý yêu cầu tính chỉ số BMI từ client.

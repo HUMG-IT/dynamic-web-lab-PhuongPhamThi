@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng Web động - Lưu Tên và Tính BMI</title>
+    <link rel="stylesheet" href="css/styleHome.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ứng dụng Web động với Node.js và Express</h1>
+
+        <!-- Form Lưu Tên -->
+        <section class="card">
+            <h2>Lưu tên</h2>
+            <form id="nameForm" class="form">
+                <label for="name">Tên:</label>
+                <input type="text" id="name" name="name" placeholder="Nhập tên của bạn" required>
+                <button type="submit">Gửi tên</button>
+            </form>
+            <p id="nameResponse" class="response"></p>
+        </section>
+
+        
+        <section class="card">
+            <h2>Tính tuổi</h2>
+            <form id="ageForm" class="form">
+                <label for="birthYear">Năm sinh:</label>
+                <input type="number" id="birthYear" name="birthYear" placeholder="Nhập năm sinh" required>
+                <button type="submit">Tính tuổi</button>
+            </form>
+            <p id="ageResult" class="response"></p>
+        </section>
+
+        <!-- Form Tính BMI -->
+        <section class="card">
+            <h2>Tính chỉ số BMI</h2>
+            <form id="bmiForm" class="form">
+                <label for="height">Chiều cao (cm):</label>
+                <input type="number" id="height" name="height" placeholder="Nhập chiều cao (cm)" required>
+                <label for="weight">Cân nặng (kg):</label>
+                <input type="number" id="weight" name="weight" placeholder="Nhập cân nặng (kg)" required>
+                <button type="submit">Tính BMI</button>
+            </form>
+            <p id="bmiResult" class="response"></p>
+        </section>
+
+        
+    </div>
+    <script src="js/scriptHome.js"></script>
+</body>
+
+</html>
