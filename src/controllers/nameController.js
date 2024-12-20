@@ -1,4 +1,4 @@
-import { db } from '../config/firebase.js';
+import { db } from '../../firebase.js';
 
 /**
  * Hàm `submitName` xử lý yêu cầu POST chứa một tên mới từ client.

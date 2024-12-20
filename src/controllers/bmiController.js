@@ -1,5 +1,5 @@
 import { calculateBMI, classifyBMI } from '../models/bmi.js';
-import { db } from '../config/firebase.js';
+import { db } from '../../firebase.js';
 
 /**
  * Hàm getBMI xử lý yêu cầu tính chỉ số BMI từ client.

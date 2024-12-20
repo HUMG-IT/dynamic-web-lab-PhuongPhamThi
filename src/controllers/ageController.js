@@ -1,4 +1,4 @@
-import { db } from '../config/firebase.js';
+import { db } from '../../firebase.js';
 
 /**
  * Hàm calculateAge xử lý yêu cầu tính tuổi từ năm sinh của client.
