@@ -1,20 +1,16 @@
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { router as apiRoutes } from './routes/api.js';
-
-// Fix for __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const express = require('express');
+const path = require('path');
 
 const app = express();
 const port = 3000;
+const { db } = require('../src/config/firebaseConfig');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
-// Sử dụng các route API
+// Import routes
+const apiRoutes = require('./routes/api');
 app.use('/api/v1', apiRoutes);
 
 app.listen(port, () => {

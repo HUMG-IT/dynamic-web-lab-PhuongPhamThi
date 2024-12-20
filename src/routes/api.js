@@ -1,9 +1,8 @@
-import express from 'express';
-import { submitName } from '../controllers/nameController.js';
-import { getBMI } from '../controllers/bmiController.js';
-import { calculateAge } from '../controllers/ageController.js';
-
+const express = require('express');
 const router = express.Router();
+const { submitName } = require('../controllers/nameController');
+const { getBMI } = require('../controllers/bmiController');
+const { calculateAge } = require('../controllers/ageController');
 
 /**
  * Route cho endpoint `/submit`
@@ -41,4 +40,4 @@ router.post('/bmi', getBMI);
  */
 router.post('/age', calculateAge);
 
-export { router };
+module.exports = router;

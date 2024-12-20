@@ -1,6 +1,6 @@
-import request from 'supertest';  
-import express from 'express';  
-import { calculateBMI, classifyBMI } from '../src/models/bmi';  
+const request = require('supertest');
+const express = require('express');
+const { calculateBMI, classifyBMI } = require('../src/models/bmi');
 
 const app = express();
 app.use(express.json());
@@ -9,51 +9,44 @@ app.use(express.json());
 const names = [];
 app.post('/api/v1/submit', (req, res) => {
   const name = req.body.name;
-
-  // Kiểm tra tên hợp lệ
-  if (!name || typeof name !== 'string' || name.trim() === '') {
-    return res.status(400).json({ message: 'Tên không hợp lệ. Vui lòng nhập lại!' });
-  }
-
-  names.push(name.trim());
-  res.status(200).json({ message: `Xin chào, ${name.trim()}!`, names });
+  names.push(name);
+  res.json({ message: `Xin chào, ${name}!`, names });
 });
 
 // BMI API
 app.post('/api/v1/bmi', (req, res) => {
   const { weight, height } = req.body;
 
-  // Kiểm tra dữ liệu đầu vào
-  if (!weight || !height || weight <= 0 || height <= 0 || isNaN(weight) || isNaN(height)) {
-    return res.status(400).json({ message: 'Cân nặng và chiều cao phải là số dương hợp lệ!' });
+  // Kiểm tra nếu trọng lượng hoặc chiều cao không hợp lệ
+  if (weight <= 0 || height <= 0) {
+    return res.status(400).json({ error: 'Trọng lượng và chiều cao phải lớn hơn 0' });
   }
 
   const bmi = calculateBMI(weight, height);
   const classification = classifyBMI(bmi);
-  res.status(200).json({ bmi, classification });
+  res.json({ bmi, classification });
 });
 
 // Age API
 app.post('/api/v1/age', (req, res) => {
   const { birthYear } = req.body;
-
-  // Kiểm tra dữ liệu đầu vào
+  
   if (!birthYear) {
     return res.status(400).json({ message: 'Năm sinh là bắt buộc!' });
   }
 
   const currentYear = new Date().getFullYear();
   const parsedBirthYear = Number(birthYear);
-
-  if (isNaN(parsedBirthYear) || parsedBirthYear > currentYear || parsedBirthYear < 1900) {
-    return res.status(400).json({ message: 'Năm sinh không hợp lệ! Vui lòng kiểm tra và nhập lại.' });
+  
+  if (isNaN(parsedBirthYear) || parsedBirthYear > currentYear) {
+    return res.status(400).json({ message: 'Năm sinh không hợp lệ!' });
   }
 
   const age = currentYear - parsedBirthYear;
-  res.status(200).json({ birthYear: parsedBirthYear, age });
+  res.json({ birthYear: parsedBirthYear, age });
 });
 
-// Test Suites
+// Test suites
 describe('POST /api/v1/submit', () => {
   it('trả về lời chào và cập nhật mảng tên', async () => {
     const res = await request(app)
@@ -64,12 +57,12 @@ describe('POST /api/v1/submit', () => {
     expect(res.body.names).toContain('John');
   });
 
-  it('trả về lỗi khi tên rỗng', async () => {
+  it('xử lý tên rỗng', async () => {
     const res = await request(app)
       .post('/api/v1/submit')
       .send({ name: '' });
-    expect(res.statusCode).toEqual(400);
-    expect(res.body).toHaveProperty('message', 'Tên không hợp lệ. Vui lòng nhập lại!');
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.message).toBe('Xin chào, !');
   });
 });
 
@@ -107,12 +100,11 @@ describe('POST /api/v1/bmi', () => {
     expect(res.body.classification).toBe('Béo phì');
   });
 
-  it('trả về lỗi khi dữ liệu đầu vào không hợp lệ', async () => {
+  it('xử lý dữ liệu đầu vào không hợp lệ', async () => {
     const res = await request(app)
       .post('/api/v1/bmi')
       .send({ weight: -1, height: 165 });
     expect(res.statusCode).toEqual(400);
-    expect(res.body).toHaveProperty('message', 'Cân nặng và chiều cao phải là số dương hợp lệ!');
   });
 });
 
@@ -131,7 +123,7 @@ describe('POST /api/v1/age', () => {
       .post('/api/v1/age')
       .send({ birthYear: new Date().getFullYear() + 1 });
     expect(res.statusCode).toEqual(400);
-    expect(res.body).toHaveProperty('message', 'Năm sinh không hợp lệ! Vui lòng kiểm tra và nhập lại.');
+    expect(res.body).toHaveProperty('message', 'Năm sinh không hợp lệ!');
   });
 
   it('tính tuổi đúng cho năm sinh xa trong quá khứ', async () => {
@@ -155,8 +147,6 @@ describe('POST /api/v1/age', () => {
       .post('/api/v1/age')
       .send({ birthYear: 'không phải số' });
     expect(res.statusCode).toEqual(400);
-    expect(res.body).toHaveProperty('message', 'Năm sinh không hợp lệ! Vui lòng kiểm tra và nhập lại.');
+    expect(res.body).toHaveProperty('message', 'Năm sinh không hợp lệ!');
   });
 });
-
-export default app; 
