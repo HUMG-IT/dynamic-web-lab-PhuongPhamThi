@@ -1,16 +1,20 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { router as apiRoutes } from './routes/api.js';
+
+// Fix for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3000;
-const { db } = require('../public/js/firebaseauth');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// Import routes
-const apiRoutes = require('./routes/api');
+// Sử dụng các route API
 app.use('/api/v1', apiRoutes);
 
 app.listen(port, () => {

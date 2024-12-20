@@ -1,14 +1,10 @@
-const { calculateBMI, classifyBMI } = require('../models/bmi');
-const db = require('../../public/js/firebaseauth');
+import { calculateBMI, classifyBMI } from '../models/bmi.js';
+import { db } from '../config/firebase.js';
 
 /**
  * Hàm getBMI xử lý yêu cầu tính chỉ số BMI từ client.
- * Nó tính BMI, phân loại kết quả, và lưu dữ liệu vào Firestore.
- *
- * @param {Object} req - Yêu cầu từ client, chứa chiều cao và cân nặng.
- * @param {Object} res - Phản hồi trả về cho client, chứa BMI và phân loại.
  */
-const getBMI = async (req, res) => {
+export const getBMI = async (req, res) => {
   try {
     const { weight, height } = req.body;
 
@@ -26,5 +22,3 @@ const getBMI = async (req, res) => {
     res.status(500).json({ error: 'Có lỗi xảy ra trên server' });
   }
 };
-
-module.exports = { getBMI };

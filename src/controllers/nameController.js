@@ -1,13 +1,9 @@
-const db = require('../../public/js/firebaseauth');
+import { db } from '../config/firebase.js';
 
 /**
  * Hàm `submitName` xử lý yêu cầu POST chứa một tên mới từ client.
- * Nó thêm tên đó vào Firestore và trả về phản hồi JSON chứa lời chào và danh sách tên hiện tại.
- *
- * @param {Object} req - Đối tượng request từ client, chứa tên trong `req.body.name`.
- * @param {Object} res - Đối tượng response để gửi phản hồi JSON về cho client.
  */
-const submitName = async (req, res) => {
+export const submitName = async (req, res) => {
   try {
     const { name } = req.body;
 
@@ -28,5 +24,3 @@ const submitName = async (req, res) => {
     res.status(500).json({ error: 'Đã xảy ra lỗi khi lưu tên!' });
   }
 };
-
-module.exports = { submitName };

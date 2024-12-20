@@ -1,8 +1,11 @@
 {
   "name": "dynamic_web_lab",
   "version": "1.0.0",
+  "description": "Làm quen với ứng dụng web động",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "prestart": "npx kill-port 3000 || true",
     "start": "node src/app.js",
     "test": "jest",
     "cypress:run": "npx wait-on http://localhost:3000 && cypress run",
@@ -11,14 +14,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "Làm quen với ứng dụng web động",
   "dependencies": {
-    "axios": "^1.7.9",
-    "body-parser": "^1.20.3",
     "chromedriver": "^130.0.2",
     "express": "^4.21.1",
-    "firebase": "^11.1.0",
-    "firebase-admin": "^13.0.1",
     "selenium-webdriver": "^4.26.0"
   },
   "devDependencies": {
@@ -27,8 +25,5 @@
     "kill-port": "^2.0.1",
     "supertest": "^7.0.0",
     "wait-on": "^8.0.1"
-  },
-  "directories": {
-    "test": "test"
   }
 }

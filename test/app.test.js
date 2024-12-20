@@ -1,6 +1,6 @@
-const request = require('supertest');
-const express = require('express');
-const { calculateBMI, classifyBMI } = require('../src/models/bmi');
+import request from 'supertest';  
+import express from 'express';  
+import { calculateBMI, classifyBMI } from '../src/models/bmi';  
 
 const app = express();
 app.use(express.json());
@@ -159,4 +159,4 @@ describe('POST /api/v1/age', () => {
   });
 });
 
-module.exports = app;
+export default app; 

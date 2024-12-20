@@ -1,4 +1,4 @@
-const db = require('../../public/js/firebaseauth');
+import { db } from '../config/firebase.js';
 
 /**
  * Hàm calculateAge xử lý yêu cầu tính tuổi từ năm sinh của client.
@@ -7,7 +7,7 @@ const db = require('../../public/js/firebaseauth');
  * @param {Object} req - Yêu cầu từ client, chứa năm sinh.
  * @param {Object} res - Phản hồi trả về cho client, chứa tuổi và thông báo.
  */
-const calculateAge = async (req, res) => {
+export const calculateAge = async (req, res) => {
   try {
     const { birthYear } = req.body;
 
@@ -30,5 +30,3 @@ const calculateAge = async (req, res) => {
     return res.status(500).json({ error: 'Đã xảy ra lỗi khi lưu dữ liệu tuổi!' });
   }
 };
-
-module.exports = { calculateAge };
