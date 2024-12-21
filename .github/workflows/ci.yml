@@ -25,7 +25,8 @@ jobs:
         run: npm install
 
       - name: Thực hiện kiểm thử đơn vị bằng Jest
-        run: npm test
+        run: npm test -- --config jest.config.ts
+
 
       - name: Khởi động server để chuẩn bị kiểm thử UI bằng Cypress
         run: |
