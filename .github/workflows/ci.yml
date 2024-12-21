@@ -45,7 +45,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
-          npm install chromedriver selenium-webdriver  # Cài đặt ChromeDriver từ npm
+          npm install chromedriver selenium-webdriver  #Cài đặt ChromeDriver từ npm
 
       - name: Chạy kiểm thử UI với Selenium
         run: xvfb-run -a node test/selenium_test.js  # Sử dụng Xvfb để chạy trong môi trường không có giao diện
