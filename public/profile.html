@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Người Dùng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quản Lý Người Dùng</h1>
+        <div id="messageDiv" class="messageDiv"></div>
+        
+        <!-- Form tạo/cập nhật -->
+        <form id="userForm">
+            <div class="input-group">
+                <input type="text" id="firstName" placeholder="Họ" required>
+                <label for="fname">Last Name: </label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="lastName" placeholder="Tên" required>
+                <label for="fname">First Name: </label>
+            </div>
+            <div class="input-group">
+                <input type="email" id="userEmail" placeholder="Email" required>
+                <label for="fname">Email: </label>
+            </div>
+            <button type="submit" class="btn" id="submitUser">Lưu Người Dùng</button>
+        </form>
+
+        <!-- Danh sách người dùng -->
+        <div id="userList"></div>
+    </div>
+
+    <script type="module">
+        import { getUser, updateUser, deleteUser } from './js/firebaseauth.js';
+
+        let currentUserId = localStorage.getItem('loggedInUserId');
+        const userForm = document.getElementById('userForm');
+        const userList = document.getElementById('userList');
+
+        // Tải và hiển thị dữ liệu người dùng
+        async function loadUserData() {
+            const userData = await getUser(currentUserId);
+            if (userData) {
+                document.getElementById('firstName').value = userData.firstName;
+                document.getElementById('lastName').value = userData.lastName;
+                document.getElementById('userEmail').value = userData.email;
+            }
+        }
+
+        // Xử lý khi form được gửi
+        userForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const userData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('userEmail').value,
+                updatedAt: new Date().toISOString()
+            };
+
+            try {
+                await updateUser(currentUserId, userData);
+                showMessage('Cập nhật thông tin thành công', 'messageDiv');
+                loadUserData();
+                window.location.href = 'homepage.html';
+            } catch (error) {
+                showMessage('Lỗi khi cập nhật thông tin', 'messageDiv');
+            }
+        });
+
+        // Xử lý khi người dùng muốn xóa tài khoản
+        async function handleDeleteUser() {
+            if (confirm('Bạn có chắc chắn muốn xóa tài khoản?')) {
+                try {
+                    await deleteUser(currentUserId);
+                    localStorage.removeItem('loggedInUserId');
+                    window.location.href = 'index.html';
+                } catch (error) {
+                    showMessage('Lỗi khi xóa tài khoản', 'messageDiv');
+                }
+            }
+        }
+
+        // Thêm nút xóa tài khoản
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Xóa Tài Khoản';
+        deleteButton.className = 'btn delete-btn';
+        deleteButton.onclick = handleDeleteUser;
+        document.querySelector('.container').appendChild(deleteButton);
+
+        // Tải dữ liệu ban đầu
+        loadUserData();
+
+        function showMessage(message, divId) {
+            const messageDiv = document.getElementById(divId);
+            messageDiv.style.display = "block";
+            messageDiv.innerHTML = message;
+            messageDiv.style.opacity = 1;
+            setTimeout(() => {
+                messageDiv.style.opacity = 0;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
