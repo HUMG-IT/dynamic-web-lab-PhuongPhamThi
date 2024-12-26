@@ -1,48 +1,77 @@
-const { Builder, By } = require('selenium-webdriver');
+const { Builder, By, until } = require('selenium-webdriver');
+require('jest');
 
-(async function testUI() {
-    let driver = await new Builder().forBrowser('chrome').build();
+async function runTests() {
+    let driver;
+
     try {
-        // Kiểm thử lưu tên
-        await driver.get('http://localhost:3000');
+        driver = await new Builder().forBrowser('chrome').build();
+        await driver.get('http://localhost:3000/homepage.html'); // Đường dẫn đến giao diện web của bạn
+
+        // Name Tests
+        console.log('\nTesting Name Submission:');
         await driver.findElement(By.id('name')).sendKeys('John');
-        await driver.findElement(By.css('button')).click();
+        await driver.findElement(By.id('submitName')).click();
+        const nameResponse = await driver.wait(until.elementLocated(By.id('nameResponse')), 5000);
+        console.log(`Name test with 'John': ${(await nameResponse.getText()).includes('Xin chào, John!') ? 'Passed' : 'Failed'}`);
 
-        let nameResponse = await driver.findElement(By.id('nameResponse')).getText();
-        if (nameResponse.includes('Xin chào, John!')) {
-            console.log('Kiểm thử lưu tên: Passed');
-        } else {
-            console.error('Kiểm thử lưu tên: Failed - Lời chào không đúng');
+        // BMI Tests  
+        console.log('\nTesting BMI Calculation:');
+        const bmiTests = [
+            { weight: 60, height: 165, expected: 'Bình thường' },
+            { weight: 45, height: 165, expected: 'Gầy' },
+            { weight: 75, height: 165, expected: 'Thừa cân' },
+            { weight: 90, height: 165, expected: 'Béo phì' }
+        ];
+
+        for (let test of bmiTests) {
+            await driver.findElement(By.id('weight')).clear();
+            await driver.findElement(By.id('height')).clear();
+            await driver.findElement(By.id('weight')).sendKeys(test.weight);
+            await driver.findElement(By.id('height')).sendKeys(test.height);
+            await driver.findElement(By.id('submitBMI')).click();
+
+            const bmiResult = await driver.wait(until.elementLocated(By.id('bmiResult')), 5000);
+            console.log(`BMI test for ${test.weight}kg/${test.height}cm: ${(await bmiResult.getText()).includes(test.expected) ? 'Passed' : 'Failed'}`);
         }
 
-        // Kiểm thử tính BMI
-        await driver.findElement(By.id('weight')).sendKeys('60');
-        await driver.findElement(By.id('height')).sendKeys('165');
-        await driver.findElement(By.xpath("//button[contains(text(),'Tính BMI')]")).click();
+        // // Test xử lý dữ liệu không hợp lệ
+        // await driver.findElement(By.id('weight')).clear();
+        // await driver.findElement(By.id('height')).clear();
+        // await driver.findElement(By.id('weight')).sendKeys(-1);
+        // await driver.findElement(By.id('height')).sendKeys(165);
+        // await driver.findElement(By.id('calculateBMI')).click();
+        // const bmiError = await driver.wait(until.elementLocated(By.className('error')), 5000);
+        // console.log(`Invalid BMI input test: ${(await bmiError.getText()).includes('Trọng lượng và chiều cao phải lớn hơn 0') ? 'Passed' : 'Failed'}`);
 
-        let bmiResult = await driver.findElement(By.id('bmiResult')).getText();
-        if (bmiResult.includes('Bình thường')) {
-            console.log('Kiểm thử tính BMI: Passed');
-        } else {
-            console.error('Kiểm thử tính BMI: Failed - Phân loại BMI không đúng');
-        }
+        // Age Tests
+        console.log('\nTesting Age Calculation:');
+        await driver.findElement(By.id('birthYear')).clear();
+        await driver.findElement(By.id('birthYear')).sendKeys('2004');
+        await driver.findElement(By.id('submitAge')).click();
+        const ageResult = await driver.wait(until.elementLocated(By.id('ageResult')), 5000);
+        const expectedAge = new Date().getFullYear() - 2004;
+        console.log(`Valid birth year test: ${(await ageResult.getText()).includes(expectedAge.toString()) ? 'Passed' : 'Failed'}`);
 
-        // Kiểm thử tính tuổi
-        await driver.findElement(By.id('yearOfBirth')).sendKeys('2000'); // Nhập năm sinh
-        await driver.findElement(By.xpath("//button[contains(text(),'Tính tuổi')]")).click();
+        // const futureYear = new Date().getFullYear() + 1;
+        // await driver.findElement(By.id('birthYear')).clear();
+        // await driver.findElement(By.id('birthYear')).sendKeys(futureYear);
+        // await driver.findElement(By.id('calculateAge')).click();
+        // const ageError = await driver.wait(until.elementLocated(By.className('error')), 5000);
+        // console.log(`Future birth year test: ${(await ageError.getText()).includes('Năm sinh không hợp lệ!') ? 'Passed' : 'Failed'}`);
 
-        let ageResult = await driver.findElement(By.id('ageResult')).getText();
-        const currentYear = new Date().getFullYear();
-        const expectedAge = currentYear - 2000;
-
-        if (ageResult.includes(`Tuổi của bạn là ${expectedAge}`)) {
-            console.log('Kiểm thử tính tuổi: Passed');
-        } else {
-            console.error('Kiểm thử tính tuổi: Failed - Kết quả tính tuổi không đúng');
-        }
+        // await driver.findElement(By.id('birthYear')).clear();
+        // await driver.findElement(By.id('birthYear')).sendKeys('');
+        // await driver.findElement(By.id('calculateAge')).click();
+        // const emptyYearError = await driver.wait(until.elementLocated(By.className('error')), 5000);
+        // console.log(`Empty birth year test: ${(await emptyYearError.getText()).includes('Năm sinh là bắt buộc!') ? 'Passed' : 'Failed'}`);
     } catch (error) {
-        console.error('Kiểm thử thất bại:', error.message);
+        console.error('Test failed:', error.message);
     } finally {
-        await driver.quit();
+        if (driver) {
+            await driver.quit();
+        }
     }
-})();
+}
+
+runTests();

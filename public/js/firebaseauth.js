@@ -1,4 +1,3 @@
-// firebaseauth.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import { getFirestore, setDoc, getDoc, updateDoc, deleteDoc, collection, getDocs, doc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
