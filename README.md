@@ -185,7 +185,7 @@ dynamic_web_lab/
 <video width="640" height="360" controls>
   <source src="cypress/videos/ui_spec.cy.js.mp4" type="video/mp4">
 </video>
-
+[![Watch the video](screenshots/giao_dien_dang_nhap)](cypress/videos/ui_spec.cy.js.mp4)
 
 ## V. Hướng dẫn cài đặt, chạy ứng dụng 
 ### 1. Các bước cài đặt
