@@ -3,10 +3,10 @@ describe('Kiểm thử giao diện đăng ký, đăng nhập và tính năng kh�
     it('đăng ký tài khoản mới', () => {
         cy.visit('http://localhost:3000'); // Điều hướng đến trang chính
         cy.get('#signUpButton').click(); // Nhấn vào nút Sign Up để chuyển sang giao diện đăng ký
-        cy.get('#fName').type('Vũ Thị'); // Nhập họ
-        cy.get('#lName').type('Tươi'); // Nhập tên
-        cy.get('#rEmail').type('tuoivu1410@gmail.com'); // Nhập email
-        cy.get('#rPassword').type('Tuoi123'); // Nhập mật khẩu
+        cy.get('#fName').type('Phạm Thị'); // Nhập họ
+        cy.get('#lName').type('Phượng'); // Nhập tên
+        cy.get('#rEmail').type('phuong2004pham@gmail.com'); // Nhập email
+        cy.get('#rPassword').type('Phuong123'); // Nhập mật khẩu
         cy.get('#submitSignUp').click(); // Nhấn nút Sign Up
         // cy.get('#signUpMessage').should('contain', 'Đăng ký thành công'); // Kiểm tra thông báo thành công
     });
