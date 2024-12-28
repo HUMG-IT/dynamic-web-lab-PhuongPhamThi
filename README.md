@@ -185,7 +185,8 @@ dynamic_web_lab/
 <video width="640" height="360" controls>
   <source src="cypress/videos/ui_spec.cy.js.mp4" type="video/mp4">
 </video>
-![Watch the video](screenshots/giao_dien_dang_nhap)](cypress/videos/ui_spec.cy.js.mp4)
+- Vì video khá nặng nên e đã nén nó lại ạ
+- https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/cypress/videos/ui_spec.cy.js.mp4
 
 ## V. Hướng dẫn cài đặt, chạy ứng dụng 
 ### 1. Các bước cài đặt
@@ -278,7 +279,7 @@ kill -9 <PID>
       <td>Giao diện frontend (HTML/CSS/JS, Flutter Web…)</td>
       <td><span style="color: green;">✔</span></td>
       <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/tree/main/public">Link minh chứng</a></td>
-      <td rowspan="3">4.0</td>
+      <td rowspan="3">3.0</td>
     </tr>
     <tr>
       <td>Backend (NodeJS/Express, .NET, Dart web…)</td>
@@ -307,7 +308,7 @@ kill -9 <PID>
       <td>Sử dụng một CSDL (MongoDB/MySQL/Postgres/Firebase)</td>
       <td><span style="color: green;">✔</span></td>
       <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/public/js/firebaseauth.js">Link minh chứng</a></td>
-      <td>1.0</td>
+      <td>2.0</td>
     </tr>
     <tr>
       <td rowspan="2"><b>CI/CD (9 điểm)</b></td>
