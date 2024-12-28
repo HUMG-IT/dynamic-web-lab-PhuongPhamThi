@@ -66,82 +66,6 @@ Sinh viên viết báo cáo kết quả trực tiếp vào phần này để tr�
 5. **Tự đánh giá điểm**: Sinh viên tự đánh giá điểm của mình theo tiêu chí đánh giá đã đề ra. Ghi rõ điểm tự đánh giá và lý do.
 
 
-<h3>Checklist Đánh Giá Dự Án</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Tiêu chí</th>
-      <th>Mô tả</th>
-      <th>Đã hoàn thành (✔/✘)</th>
-      <th>Minh chứng</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="3"><b>Hoàn thành CRUD (5 điểm)</b></td>
-      <td>Giao diện frontend (HTML/CSS/JS, Flutter Web…)</td>
-      <td><span style="color: green;">✔</span</td>
-      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/tree/main/public">Link minh chứng</a></td>
-    </tr>
-    <tr>
-      <td>Backend (NodeJS/Express, .NET, Dart web…)</td>
-      <td><span style="color: green;">✔</span</td>
-      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/tree/main/src">Link minh chứng</a></td>
-    </tr>
-    <tr>
-      <td>CRUD cơ bản (create, read, update, delete)</td>
-      <td><span style="color: green;">✔</span</td>
-      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/public/js/firebaseauth.js">Link minh chứng</a></td>
-    </tr>
-    <tr>
-      <td rowspan="2"><b>Kiểm thử (6–7 điểm)</b></td>
-      <td>Unit tests</td>
-      <td><span style="color: green;">✔</span</td>
-      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/test/app.test.js">Link minh chứng</a></td>
-    </tr>
-    <tr>
-      <td>Integration/E2E tests</td>
-      <td><span style="color: green;">✔</span</td>
-      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/cypress/e2e/ui_spec.cy.js">Link minh chứng</a></td>
-    </tr>
-    <tr>
-      <td><b>Tích hợp CSDL (8 điểm)</b></td>
-      <td>Sử dụng một CSDL (MongoDB/MySQL/Postgres/Firebase)</td>
-      <td><span style="color: green;">✔</span</td>
-      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/public/js/firebaseauth.js">Link minh chứng</a></td>
-    </tr>
-    <tr>
-      <td rowspan="2"><b>CI/CD (9 điểm)</b></td>
-      <td>Thiết lập kiểm thử tự động (GitHub Actions)</td>
-      <td><span style="color: green;">✔</span</td>
-      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/.github/workflows/ci.yml">Link minh chứng</a></td>
-    </tr>
-    <tr>
-      <td>Triển khai thành công (nếu có)</td>
-      <td><span style="color: green;">✔</span</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td rowspan="3"><b>Báo cáo, demo & tài liệu (10 điểm)</b></td>
-      <td>Báo cáo mô tả đầy đủ quá trình, kèm hình ảnh minh họa</td>
-       <td><span style="color: green;">✔</span</td>
-      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/README.md">Link minh chứng</a></td>
-    </tr>
-    <tr>
-      <td>Video demo ≤ 5 phút</td>
-       <td><span style="color: green;">✔</span</td>
-      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/cypress/videos/ui_spec.cy.js.mp4">Link minh chứng</a></td>
-    </tr>
-    <tr>
-      <td>Hướng dẫn cài đặt, chạy ứng dụng</td>
-       <td><span style="color: green;">✔</span</td>
-      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/README.md">Link minh chứng</a></td>
-    </tr>
-  </tbody>
-</table>
-
-
 # Báo cáo
 ## I. Giới thiệu chung
 Ứng dụng web động này giúp sinh viên làm quen với các khái niệm cơ bản về lập trình web, bao gồm thiết kế giao diện, triển khai server backend và kiểm thử tự động. Ứng dụng có giao diện đơn giản để người dùng tương tác và backend xử lý logic, cho phép gửi và lưu trữ thông tin, đồng thời thực hiện các chức năng như tính tuổi và chỉ số BMI.
@@ -263,7 +187,7 @@ dynamic_web_lab/
 </video>
 
 
-## V. Hướng dẫn cài đặt, chạy ứng dụng
+## V. Hướng dẫn cài đặt, chạy ứng dụng 
 ### 1. Các bước cài đặt
 #### 1.1. Clone dự án
 ```
@@ -335,6 +259,101 @@ lsof -i :3000
 # Dừng process
 kill -9 <PID>
 ```
+## VI. Bảng checklist và tự đánh giá mức điểm
+<h3>Checklist Đánh Giá Dự Án</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tiêu chí</th>
+      <th>Mô tả</th>
+      <th>Đã hoàn thành (✔/✘)</th>
+      <th>Minh chứng</th>
+      <th>Điểm tự đánh giá</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3"><b>Hoàn thành CRUD (5 điểm)</b></td>
+      <td>Giao diện frontend (HTML/CSS/JS, Flutter Web…)</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/tree/main/public">Link minh chứng</a></td>
+      <td rowspan="3">4.0</td>
+    </tr>
+    <tr>
+      <td>Backend (NodeJS/Express, .NET, Dart web…)</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/tree/main/src">Link minh chứng</a></td>
+    </tr>
+    <tr>
+      <td>CRUD cơ bản (create, read, update, delete)</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/public/js/firebaseauth.js">Link minh chứng</a></td>
+    </tr>
+    <tr>
+      <td rowspan="2"><b>Kiểm thử (6–7 điểm)</b></td>
+      <td>Unit tests</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/test/app.test.js">Link minh chứng</a></td>
+      <td rowspan="2">2.0</td>
+    </tr>
+    <tr>
+      <td>Integration/E2E tests</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/cypress/e2e/ui_spec.cy.js">Link minh chứng</a></td>
+    </tr>
+    <tr>
+      <td><b>Tích hợp CSDL (8 điểm)</b></td>
+      <td>Sử dụng một CSDL (MongoDB/MySQL/Postgres/Firebase)</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/public/js/firebaseauth.js">Link minh chứng</a></td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><b>CI/CD (9 điểm)</b></td>
+      <td>Thiết lập kiểm thử tự động (GitHub Actions)</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/.github/workflows/ci.yml">Link minh chứng</a></td>
+      <td rowspan="2">1.0</td>
+    </tr>
+    <tr>
+      <td>Triển khai thành công (nếu có)</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/screenshots/cicd.jpg">Link minh chứng</a></td>
+    </tr>
+    <tr>
+      <td rowspan="3"><b>Báo cáo, demo & tài liệu (10 điểm)</b></td>
+      <td>Báo cáo mô tả đầy đủ quá trình, kèm hình ảnh minh họa</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/README.md">Link minh chứng</a></td>
+      <td rowspan="3">1.0</td>
+    </tr>
+    <tr>
+      <td>Video demo ≤ 5 phút</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/cypress/videos/ui_spec.cy.js.mp4">Link minh chứng</a></td>
+    </tr>
+    <tr>
+      <td>Hướng dẫn cài đặt, chạy ứng dụng</td>
+      <td><span style="color: green;">✔</span></td>
+      <td><a href ="https://github.com/HUMG-IT/dynamic-web-lab-PhuongPhamThi/blob/main/README.md">Link minh chứng</a></td>
+    </tr>
+    <tr>
+      <td colspan="4"><b>Tổng điểm:</b></td>
+      <td><b>9.0</b></td>
+    </tr>
+  </tbody>
+</table>
+
+**Lý do:**
+  - Tuy là em sử dụng project trong quá trình học mà thầy đã cho làm, nhưng em đã chủ động phát triển và mở rộng thêm chức năng cũng như cải thiện hiệu suất của hệ thống.
+  Cụ thể:
+    + Hoàn thiện giao diện: Em đã thiết kế lại giao diện frontend để cải thiện trải nghiệm người dùng, đồng thời bổ sung một số tính năng trực quan hơn.
+    + Tích hợp cơ sở dữ liệu Firebase: Em đã cấu hình cơ sở dữ liệu và triển khai đầy đủ CRUD, đảm bảo tính nhất quán dữ liệu.
+    + Thêm tính năng kiểm thử: Em đã thực hiện các bài kiểm thử Unit Test và E2E Test để đảm bảo chất lượng ứng dụng.
+    + Tích hợp CI/CD: Em thiết lập pipeline GitHub Actions để tự động hóa kiểm thử và triển khai.
+  Những cải tiến này đã giúp em nắm vững hơn các kiến thức đã học và áp dụng chúng vào thực tiễn, đồng thời tạo ra sản phẩm hoàn chỉnh hơn so với yêu cầu ban đầu. 
+
 ## Yêu cầu nộp bài
 - **Source code**: Sinh viên cần nhận bài tập từ GitHub Classroom và nộp mã nguồn của ứng dụng theo đúng cấu trúc yêu cầu.
 - **Gỡ lỗi ứng dụng**: Sinh viên cần chắc chắn ứng dụng hoạt động đúng trên máy tính cá nhân trước khi nộp bài.
